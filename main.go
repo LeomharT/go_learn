@@ -1,6 +1,6 @@
 // @title           Swagger Example API
 // @version         1.0
-// @description     This is a sample server celler server.
+// @description     This is a sample server of logs server.
 // @termsOfService  http://swagger.io/terms/
 
 // @contact.name   API Support
@@ -24,7 +24,9 @@ import (
 	"log"
 	"net/http"
 
+	"go_learn/controller"
 	_ "go_learn/docs"
+	"go_learn/service"
 
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -32,10 +34,19 @@ import (
 )
 
 func main() {
-	// nam := "123"
-
 	// Create a Gin router with default middleware (logger and recovery)
 	r := gin.Default()
+	s := service.NewService()
+	c := controller.NewController(s)
+
+	v1 := r.Group("/api/v1")
+	{
+		logs := v1.Group("/logs")
+		{
+			logs.GET("", c.GetLogsList)
+		}
+	}
+
 	// Define a simple GET endpoint
 	r.GET("/", func(c *gin.Context) {
 		// Return JSON response
