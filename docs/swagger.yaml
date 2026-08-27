@@ -1,4 +1,22 @@
 basePath: /api/v1
+definitions:
+  controller.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      msg:
+        type: string
+    type: object
+  model.Log:
+    properties:
+      content:
+        type: string
+      level:
+        type: string
+      time:
+        type: string
+    type: object
 externalDocs:
   description: OpenAPI
   url: https://swagger.io/resources/open-api/
@@ -8,14 +26,48 @@ info:
     email: support@swagger.io
     name: API Support
     url: http://www.swagger.io/support
-  description: This is a sample server of logs server haha leo.
+  description: This is a sample server of logs server.
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: http://swagger.io/terms/
   title: Swagger Example API
   version: "1.0"
-paths: {}
+paths:
+  /logs/content:
+    get:
+      consumes:
+      - application/json
+      description: get log content
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Log'
+        "400":
+          description: success
+          schema:
+            allOf:
+            - $ref: '#/definitions/controller.Response'
+            - properties:
+                data:
+                  type: object
+              type: object
+        "404":
+          description: somthing is wrong
+          schema:
+            $ref: '#/definitions/controller.Response'
+      summary: Get logs content
+      tags:
+      - logs
 securityDefinitions:
   BasicAuth:
     type: basic

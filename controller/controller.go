@@ -1,6 +1,8 @@
 package controller
 
-import "go_learn/service"
+import (
+	"go_learn/service"
+)
 
 type Controller struct {
 	service *service.Service

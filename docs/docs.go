@@ -23,7 +23,92 @@ const docTemplate = `{
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
-    "paths": {},
+    "paths": {
+        "/logs/content": {
+            "get": {
+                "description": "get log content",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "logs"
+                ],
+                "summary": "Get logs content",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Account ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Log"
+                        }
+                    },
+                    "400": {
+                        "description": "success",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/controller.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "404": {
+                        "description": "somthing is wrong",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "controller.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {},
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.Log": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "level": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        }
+    },
     "securityDefinitions": {
         "BasicAuth": {
             "type": "basic"
@@ -42,7 +127,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "/api/v1",
 	Schemes:          []string{},
 	Title:            "Swagger Example API",
-	Description:      "This is a sample server of logs server haha leo.",
+	Description:      "This is a sample server of logs server.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",
