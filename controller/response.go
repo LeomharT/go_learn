@@ -1,6 +1,8 @@
 package controller
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 type Response struct {
 	Code int         `json:"code"`
@@ -8,10 +10,6 @@ type Response struct {
 	Data interface{} `json:"data"`
 }
 
-func APIResponse(ctx *gin.Context, status int, msg string, data interface{}) Response {
-	return Response{
-		Code: status,
-		Msg:  msg,
-		Data: data,
-	}
+func APIResponse(ctx *gin.Context, status int, msg string, data interface{}) {
+	ctx.JSON(status, Response{Code: status, Msg: msg, Data: data})
 }

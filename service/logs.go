@@ -6,7 +6,17 @@ import (
 	"path/filepath"
 )
 
-func (c *Service) GetLogsList() (model.Log, error) {
+func (s *Service) OpenLogsStream() (*os.File, error) {
+	path := filepath.Join("tmp", "gs", "edge-core", "logs", "edge-core-20260825.log")
+	absPath, err := filepath.Abs(path)
+	if err != nil {
+		return nil, err
+	}
+
+	return os.Open(absPath)
+}
+
+func (s *Service) GetLogsList() (model.Log, error) {
 	path := filepath.Join("tmp", "gs", "edge-core", "logs", "edge-core-20260825.log")
 	absPath, err := filepath.Abs((path))
 
