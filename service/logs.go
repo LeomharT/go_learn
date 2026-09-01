@@ -16,7 +16,7 @@ func (s *Service) OpenLogsStream() (*os.File, error) {
 	return os.Open(absPath)
 }
 
-func (s *Service) GetLogsList() (model.Log, error) {
+func (s *Service) GetLogsContent() (model.Log, error) {
 	path := filepath.Join("tmp", "gs", "edge-core", "logs", "edge-core-20260825.log")
 	absPath, err := filepath.Abs((path))
 
