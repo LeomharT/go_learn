@@ -1,0 +1,6 @@
+image: /maps/16f01/16f01.pgm
+resolution: 0.0500000007
+origin: [-14.849349931483356, -3.4597200864653095, 0]
+negate: 0
+occupied_thresh: 0.5
+free_thresh: 0.19

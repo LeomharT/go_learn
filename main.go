@@ -40,11 +40,18 @@ func main() {
 	c := controller.NewController(s)
 
 	v1 := r.Group("/api/v1")
+
+	// LOGS
 	{
 		logs := v1.Group("/logs")
 		{
 			logs.GET("content", c.GetLogsContent)
 		}
+	}
+
+	// WS
+	{
+		v1.GET("ws", c.SendLethalData)
 	}
 
 	// Define a simple GET endpoint

@@ -1,0 +1,11 @@
+{
+  "stamp": { "sec": 1787852922, "nanosec": 970551314 },
+  "frame_id": "map",
+  "layer": "lethal",
+  "region": { "col0": 0, "row0": 0, "width": 547, "height": 611 },
+  "resolution": 0.0500000007,
+  "origin": [-14.849349931483356, -3.4597200864653095],
+  "encoding": "u32delta+gzip+b64",
+  "count": 328,
+  "data": "H4sIAAAAAAAAExObz8jAyMBAEhZnIk39YNfzlhFTTI1EM0D4DRZzYFh11Dy6m6eOZN4RLPLkxLEaFje+JcMcVTx+fTMMzaNWuCHHKYsXprw8lvxPiRgAxlMZISAFAAA="
+}
